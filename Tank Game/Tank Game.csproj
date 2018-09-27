@@ -299,7 +299,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\tankl.cs" />
+    <Compile Include="Assets\Scripts\Rocket.cs" />
+    <Compile Include="Assets\Scripts\Tank.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="C:\ProgramData\Unity\cache\packages\packages.unity.com\com.unity.package-manager-ui@1.7.2\Editor\Resources\Styles\Main_Dark.uss" />

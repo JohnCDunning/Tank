@@ -7,6 +7,8 @@ public class Tank : MonoBehaviour {
     public float tankSpeed;
     public GameObject Turret;
     public GameObject marker;
+    public GameObject Rocket;
+    public GameObject RocketSpawnPoint;
     // Use this for initialization
     void Start() {
 
@@ -14,9 +16,19 @@ public class Tank : MonoBehaviour {
 
     // Update is called once per frame
     void Update()
-    {        
+    {
         MoveTank();
         TurretRotation();
+        Shoot();
+    }
+    void Shoot()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+           GameObject spawnedRocket = Instantiate(Rocket);
+           spawnedRocket.transform.position = RocketSpawnPoint.transform.position;
+           spawnedRocket.transform.rotation = Turret.transform.rotation;
+        }
     }
     //to move the tank
     void MoveTank()
@@ -45,6 +57,7 @@ public class Tank : MonoBehaviour {
 
         }
     }
+
     // to rotate turret
     void TurretRotation()
     {
