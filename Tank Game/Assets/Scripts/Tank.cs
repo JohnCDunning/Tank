@@ -35,5 +35,10 @@ public class Tank : MonoBehaviour {
 
         }
         //move tank backward
+        if (Input.GetKey(KeyCode.S))
+        {
+            transform.Translate(Vector3.back * (tankSpeed / 2) * Time.deltaTime);
+
+        }
     }
 }
