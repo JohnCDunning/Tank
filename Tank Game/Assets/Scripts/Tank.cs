@@ -12,7 +12,8 @@ public class Tank : MonoBehaviour {
     public GameObject trailPrefab;
     public GameObject trailSpawn;
     public bool alive;
-
+    public GameObject deathParticles;
+    public ParticleSystem shootPuff;
     // Use this for initialization
     void Start() {
         InvokeRepeating("TredTrail", 0.3f, 0.3f);
@@ -28,6 +29,10 @@ public class Tank : MonoBehaviour {
             TurretRotation();
             Shoot();
         }
+        else
+        {
+            deathParticles.gameObject.SetActive(true);
+        }
     }
     void Shoot()
     {
@@ -36,6 +41,8 @@ public class Tank : MonoBehaviour {
            GameObject spawnedRocket = Instantiate(Rocket);
            spawnedRocket.transform.position = RocketSpawnPoint.transform.position;
            spawnedRocket.transform.rotation = Turret.transform.rotation;
+           shootPuff.Play();
+           shootPuff.transform.GetComponent<Animator>().SetTrigger("Shoot");
         }
     }
     void TredTrail()

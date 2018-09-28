@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 4820097660185424}
   - component: {fileID: 33634780423813898}
   - component: {fileID: 23623997789749464}
-  - component: {fileID: 64091511595906560}
   - component: {fileID: 114122695069090374}
   m_Layer: 0
   m_Name: Trail
@@ -50,8 +49,8 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1145775671663146}
   m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
@@ -85,20 +84,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1145775671663146}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!64 &64091511595906560
-MeshCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1145775671663146}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!114 &114122695069090374
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -110,3 +95,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae31f8313372abf469069281a57201b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TimeToKill: 4
