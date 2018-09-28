@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using ObjectPooling;
 public class Tank : MonoBehaviour {
     public float tankRotateSpeed;
     public float tankSpeed;
@@ -14,6 +14,8 @@ public class Tank : MonoBehaviour {
     public bool alive;
     public GameObject deathParticles;
     public ParticleSystem shootPuff;
+    public AudioSource tankNoise;
+    public AudioSource shootNoise;
     // Use this for initialization
     void Start() {
         InvokeRepeating("TredTrail", 0.3f, 0.3f);
@@ -28,6 +30,8 @@ public class Tank : MonoBehaviour {
             MoveTank();
             TurretRotation();
             Shoot();
+            //AUDIO FOR TANK TRACK NOISE (1 line skillz)
+            if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D)) { tankNoise.volume = 1; } else { tankNoise.volume = 0; }
         }
         else
         {
@@ -38,18 +42,20 @@ public class Tank : MonoBehaviour {
     {
         if (Input.GetMouseButtonDown(0))
         {
-           GameObject spawnedRocket = Instantiate(Rocket);
-           spawnedRocket.transform.position = RocketSpawnPoint.transform.position;
-           spawnedRocket.transform.rotation = Turret.transform.rotation;
+            Turret.GetComponent<Animator>().SetTrigger("TurretShoot");
+            shootNoise.pitch = Random.Range(1f, 2f);
+            shootNoise.Play();
+           PoolController.Instance.SpawnObject("Rocket", RocketSpawnPoint.transform.position, Turret.transform.rotation);
+          
+           
            shootPuff.Play();
            shootPuff.transform.GetComponent<Animator>().SetTrigger("Shoot");
         }
     }
     void TredTrail()
     {
-        GameObject trail = Instantiate(trailPrefab);
-        trail.transform.position = trailSpawn.transform.position;
-        trail.transform.rotation = transform.rotation;
+        PoolController.Instance.SpawnObject("Trail", trailSpawn.transform.position, transform.rotation);
+       
     }
     //to move the tank
     void MoveTank()
@@ -59,6 +65,7 @@ public class Tank : MonoBehaviour {
             if (Input.GetKey(KeyCode.A))
             {
                 transform.Rotate(Vector3.down * tankRotateSpeed * Time.deltaTime);
+                
             }
             //spin right
             if (Input.GetKey(KeyCode.D))
@@ -69,8 +76,8 @@ public class Tank : MonoBehaviour {
             if (Input.GetKey(KeyCode.W))
             {
                 transform.Translate(Vector3.forward * (tankSpeed / 2) * Time.deltaTime);
-
-            }
+                
+             }
             //move tank backward
             if (Input.GetKey(KeyCode.S))
             {

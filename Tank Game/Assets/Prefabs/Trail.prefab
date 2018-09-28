@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4820097660185424}
   - component: {fileID: 33634780423813898}
   - component: {fileID: 23623997789749464}
-  - component: {fileID: 114122695069090374}
+  - component: {fileID: 114933752540695372}
   m_Layer: 0
   m_Name: Trail
   m_TagString: Untagged
@@ -84,7 +84,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1145775671663146}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &114122695069090374
+--- !u!114 &114933752540695372
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -95,4 +95,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae31f8313372abf469069281a57201b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TimeToKill: 4
+  TimeToKill: 3.5

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using ObjectPooling;
 public enum State
 {
     Level_1, Level_2, Level_3, Level_4, Level_5
@@ -21,6 +22,7 @@ public class Enemy : MonoBehaviour
     public GameObject deathParticles;
     public bool alive;
     public ParticleSystem shootPuff;
+    public AudioSource shoot;
     // Use this for initialization
     void Start()
     {
@@ -46,18 +48,17 @@ public class Enemy : MonoBehaviour
 
     }
     void Shoot()
-    {       
-        GameObject spawnedRocket = Instantiate(Rocket);
-        spawnedRocket.transform.position = RocketSpawnPoint.transform.position;
-        spawnedRocket.transform.rotation = Turret.transform.rotation;
+    {
+        shoot.pitch = Random.Range(0.6f, 1.2f);
+        shoot.Play();
+        Turret.GetComponent<Animator>().SetTrigger("TurretShoot");
+        PoolController.Instance.SpawnObject("Rocket", RocketSpawnPoint.transform.position, Turret.transform.rotation);
         shootPuff.Play();
         shootPuff.transform.GetComponent<Animator>().SetTrigger("Shoot");
     }
     void TredTrail()
     {
-        GameObject trail = Instantiate(trailPrefab);
-        trail.transform.position = trailSpawn.transform.position;
-        trail.transform.rotation = transform.rotation;
+        PoolController.Instance.SpawnObject("Trail", trailSpawn.transform.position, transform.rotation);
     }
 
 }

@@ -1,20 +1,31 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class KillThisObject : MonoBehaviour {
+using ObjectPooling;
+public class KillThisObject : PoolObject{
     public float TimeToKill;
+    float timeryeet;
     // Use this for initialization
     void Start () {
-        Invoke("KillThisThing", TimeToKill);
+        timeryeet = 0;
     }
 	
 	// Update is called once per frame
 	void Update () {
-		
+        timeryeet += 1 * Time.deltaTime;
+        if(timeryeet >= TimeToKill)
+        {
+            KillThisThing();
+        }
 	}
     void KillThisThing()
     {
-        Destroy(gameObject);
+        Destroy();
+     
     }
+    public override void OnObjectReuse() //Required
+    {
+        timeryeet = 0;
+    }
+
 }
