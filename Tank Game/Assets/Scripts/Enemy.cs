@@ -15,6 +15,7 @@ public class Enemy : MonoBehaviour
     public GameObject RocketSpawnPoint;
     public float turretTurnSpeed;
     private float shootTimer;
+    public GameObject trailPrefab;
     
   
     // Use this for initialization
@@ -37,5 +38,6 @@ public class Enemy : MonoBehaviour
         spawnedRocket.transform.rotation = Turret.transform.rotation;
 
     }
+  
 }
 

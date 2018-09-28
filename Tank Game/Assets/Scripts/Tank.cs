@@ -9,11 +9,13 @@ public class Tank : MonoBehaviour {
     public GameObject marker;
     public GameObject Rocket;
     public GameObject RocketSpawnPoint;
+    public GameObject trailPrefab;
+    public GameObject trailSpawn;
     public bool alive;
 
     // Use this for initialization
     void Start() {
-
+        InvokeRepeating("TredTrail", 0.3f, 0.3f);
     }
 
     // Update is called once per frame
@@ -35,6 +37,12 @@ public class Tank : MonoBehaviour {
            spawnedRocket.transform.position = RocketSpawnPoint.transform.position;
            spawnedRocket.transform.rotation = Turret.transform.rotation;
         }
+    }
+    void TredTrail()
+    {
+        GameObject trail = Instantiate(trailPrefab);
+        trail.transform.position = trailSpawn.transform.position;
+        trail.transform.rotation = transform.rotation;
     }
     //to move the tank
     void MoveTank()
