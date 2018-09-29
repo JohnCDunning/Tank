@@ -876,6 +876,7 @@ MonoBehaviour:
   deathParticles: {fileID: 1036518329700778}
   shootPuff: {fileID: 198505026882612808}
   tankNoise: {fileID: 82648879889711672}
+  shootNoise: {fileID: 0}
 --- !u!198 &198061958118061606
 ParticleSystem:
   m_ObjectHideFlags: 1

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using ObjectPooling;
+//This script is now only for object pooled items
 public class KillThisObject : PoolObject{
     public float TimeToKill;
     float timeryeet;

@@ -39,6 +39,8 @@ GameObject:
   - component: {fileID: 198423366682287868}
   - component: {fileID: 114315607343667752}
   - component: {fileID: 199505198040184796}
+  - component: {fileID: 82869796430461900}
+  - component: {fileID: 114501121387812974}
   m_Layer: 0
   m_Name: Explosion
   m_TagString: Untagged
@@ -66,13 +68,108 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1954012570101548}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -7.398598, y: 0.28667548, z: 2.9629288}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 7.423343, y: 0.5, z: -0.4665242}
+  m_LocalScale: {x: 1.1, y: 1.1, z: 1.1}
   m_Children:
   - {fileID: 4254419828302716}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!82 &82869796430461900
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1954012570101548}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 320e6d469bcf9f745843c9c24944b0fa, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!114 &114315607343667752
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -85,6 +182,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TimeToKill: 1.5
+--- !u!114 &114501121387812974
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1954012570101548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83b5d1152870d0b43ac5c2bc2fb73914, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!198 &198423366682287868
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -274,22 +382,22 @@ ParticleSystem:
       maxColor: {r: 1, g: 0, b: 0, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 1, g: 1, b: 1, a: 1}
-        key1: {r: 1, g: 1, b: 1, a: 1}
-        key2: {r: 0, g: 0, b: 0, a: 0}
-        key3: {r: 0, g: 0, b: 0, a: 0}
-        key4: {r: 0, g: 0, b: 0, a: 0}
-        key5: {r: 0, g: 0, b: 0, a: 0}
-        key6: {r: 0, g: 0, b: 0, a: 0}
-        key7: {r: 0, g: 0, b: 0, a: 0}
+        key0: {r: 1, g: 0, b: 0, a: 1}
+        key1: {r: 0.9786186, g: 1, b: 0, a: 1}
+        key2: {r: 1, g: 0.3607843, b: 0.7271756, a: 0}
+        key3: {r: 1, g: 0.60045624, b: 0, a: 0}
+        key4: {r: 1, g: 0, b: 0.13743877, a: 0}
+        key5: {r: 1, g: 0.70932275, b: 0, a: 0}
+        key6: {r: 1, g: 0.70932275, b: 0, a: 0}
+        key7: {r: 1, g: 0.70932275, b: 0, a: 0}
         ctime0: 0
-        ctime1: 65535
-        ctime2: 0
-        ctime3: 0
-        ctime4: 0
-        ctime5: 0
-        ctime6: 0
-        ctime7: 0
+        ctime1: 12914
+        ctime2: 30069
+        ctime3: 46646
+        ctime4: 55319
+        ctime5: 65342
+        ctime6: 65342
+        ctime7: 65342
         atime0: 0
         atime1: 65535
         atime2: 0
@@ -299,7 +407,7 @@ ParticleSystem:
         atime6: 0
         atime7: 0
         m_Mode: 0
-        m_NumColorKeys: 2
+        m_NumColorKeys: 6
         m_NumAlphaKeys: 2
       minGradient:
         serializedVersion: 2
@@ -3686,7 +3794,7 @@ ParticleSystem:
     enabled: 1
     subEmitters:
     - serializedVersion: 2
-      emitter: {fileID: 198930215258799686}
+      emitter: {fileID: 0}
       type: 0
       properties: 0
   LightsModule:

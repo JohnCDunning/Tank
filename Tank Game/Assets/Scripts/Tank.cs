@@ -17,6 +17,10 @@ public class Tank : MonoBehaviour {
     public AudioSource tankNoise;
     public AudioSource shootNoise;
     // Use this for initialization
+    void Awake()
+    {
+        
+    }
     void Start() {
         InvokeRepeating("TredTrail", 0.3f, 0.3f);
     }
@@ -30,12 +34,20 @@ public class Tank : MonoBehaviour {
             MoveTank();
             TurretRotation();
             Shoot();
+            PlantMine();
             //AUDIO FOR TANK TRACK NOISE (1 line skillz)
             if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D)) { tankNoise.volume = 1; } else { tankNoise.volume = 0; }
         }
         else
         {
             deathParticles.gameObject.SetActive(true);
+        }
+    }
+    void PlantMine()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            PoolController.Instance.SpawnObject("Mine", transform.position, Quaternion.identity);
         }
     }
     void Shoot()
