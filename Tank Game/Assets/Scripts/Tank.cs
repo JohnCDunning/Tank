@@ -5,6 +5,10 @@ using ObjectPooling;
 public class Tank : MonoBehaviour {
     public float tankRotateSpeed;
     public float tankSpeed;
+    public float timeToShoot;
+    private float shootTimer;
+    public float timeToMine;
+    private float mineTimer;
     public GameObject Turret;
     public GameObject marker;
     public GameObject Rocket;
@@ -16,6 +20,9 @@ public class Tank : MonoBehaviour {
     public ParticleSystem shootPuff;
     public AudioSource tankNoise;
     public AudioSource shootNoise;
+
+
+    
     // Use this for initialization
     void Awake()
     {
@@ -31,10 +38,18 @@ public class Tank : MonoBehaviour {
         //If Alive
         if (alive == true)
         {
+            shootTimer += 1 * Time.deltaTime;
+            mineTimer += 1 * Time.deltaTime;
             MoveTank();
             TurretRotation();
-            Shoot();
-            PlantMine();
+            if (shootTimer >= timeToShoot)
+            {
+                Shoot();
+            }
+            if (mineTimer >= timeToMine)
+            {
+                PlantMine();
+            }
             //AUDIO FOR TANK TRACK NOISE (1 line skillz)
             if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D)) { tankNoise.volume = 1; } else { tankNoise.volume = 0; }
         }
@@ -45,14 +60,15 @@ public class Tank : MonoBehaviour {
     }
     void PlantMine()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Space))
         {
             PoolController.Instance.SpawnObject("Mine", transform.position, Quaternion.identity);
+            mineTimer = 0;
         }
     }
     void Shoot()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0))
         {
             Turret.GetComponent<Animator>().SetTrigger("TurretShoot");
             shootNoise.pitch = Random.Range(1f, 2f);
@@ -62,6 +78,7 @@ public class Tank : MonoBehaviour {
            
            shootPuff.Play();
            shootPuff.transform.GetComponent<Animator>().SetTrigger("Shoot");
+           shootTimer = 0;
         }
     }
     void TredTrail()
@@ -104,8 +121,9 @@ public class Tank : MonoBehaviour {
     {
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out hit))
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity,layerMask:13))
         {
+            
             if (Vector3.Distance(transform.position, hit.point) > 1)
             {
                

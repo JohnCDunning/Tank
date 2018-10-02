@@ -97,12 +97,15 @@
      <Compile Include="Assets\PostProcessing\Runtime\Utils\MaterialFactory.cs" />
      <Compile Include="Assets\PostProcessing\Runtime\Utils\RenderTextureFactory.cs" />
      <Compile Include="Assets\PostProcessing\Utilities\CustomMotionTexture\ExampleWheelController.cs" />
+     <Compile Include="Assets\Scripts\CamMove.cs" />
      <Compile Include="Assets\Scripts\Enemy.cs" />
      <Compile Include="Assets\Scripts\ExplosionAudioPitch.cs" />
+     <Compile Include="Assets\Scripts\Explosives.cs" />
      <Compile Include="Assets\Scripts\KillThisObject.cs" />
      <Compile Include="Assets\Scripts\Mine.cs" />
      <Compile Include="Assets\Scripts\Rocket.cs" />
      <Compile Include="Assets\Scripts\Tank.cs" />
+     <Compile Include="Assets\Scripts\ToolTip.cs" />
      <None Include="Assets\PostProcessing\Resources\Shaders\DepthOfField.shader" />
      <None Include="Assets\PostProcessing\Resources\Shaders\MotionBlur.cginc" />
      <None Include="Assets\PostProcessing\Resources\Shaders\Fog.shader" />

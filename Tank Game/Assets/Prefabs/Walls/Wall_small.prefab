@@ -22,7 +22,8 @@ GameObject:
   - component: {fileID: 33770348122704828}
   - component: {fileID: 23089126167857226}
   - component: {fileID: 65232202811758918}
-  m_Layer: 0
+  - component: {fileID: 208905952654908472}
+  m_Layer: 15
   m_Name: Wall_small
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36,7 +37,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1177593883486136}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -14.525571, y: 6.667938, z: -0.30147}
+  m_LocalPosition: {x: -14.525571, y: 6.667938, z: 1.1985321}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -96,3 +97,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.5, y: 1.5, z: 1.5}
   m_Center: {x: -0.00000011920929, y: 0, z: 0.00000023841858}
+--- !u!208 &208905952654908472
+NavMeshObstacle:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1177593883486136}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.75000006, y: 0.75000006, z: 0.75000006}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5

@@ -36,23 +36,29 @@ public class Rocket : PoolObject {
         
         transform.Translate(Vector3.forward * speed * Time.deltaTime);
     }
+    //If the rocket hits anything
     private void OnTriggerEnter(Collider other)
     {
-        /// transform.position = Vector3.Reflect(other.transform.position, Vector3.right);
-       
         
+       
+        //If hit breakable wall
         if (other.tag == "breakable")
         {
             Destroy(other.gameObject);
-           
-            
-            Destroy();
-            
-            
+            Destroy();           
         }
+        if (other.tag == "Player")
+        {
+            other.GetComponent<Tank>().alive = false;
+        }else if(other.tag == "Enemy")
+        {
+            other.GetComponent<Enemy>().alive = false;
+        }
+        //Explode if it hits anything at all
         explosion.transform.position = transform.position;
         PoolController.Instance.SpawnObject("Explosion", transform.position,Quaternion.identity);
        
+        //Resets the rocket
         Destroy();      
     }
     public override void OnObjectReuse() //Required

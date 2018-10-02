@@ -6,6 +6,7 @@ TagManager:
   tags:
   - breakable
   - Rocket
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -21,8 +22,8 @@ TagManager:
   - RenderTexture
   - Mine
   - Rocket
-  - 
-  - 
+  - RaycastGround
+  - Wall
   - 
   - 
   - 
