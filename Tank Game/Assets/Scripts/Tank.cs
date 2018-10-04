@@ -6,6 +6,7 @@ public class Tank : MonoBehaviour {
     public float tankRotateSpeed;
     public float tankSpeed;
     public float timeToShoot;
+    public AudioClip death;
     private float shootTimer;
     public float timeToMine;
     private float mineTimer;
@@ -21,7 +22,7 @@ public class Tank : MonoBehaviour {
     public AudioSource tankNoise;
     public AudioSource shootNoise;
 
-
+    private bool playedDeathNoise = false;
     
     // Use this for initialization
     void Awake()
@@ -55,7 +56,13 @@ public class Tank : MonoBehaviour {
         }
         else
         {
-            deathParticles.gameObject.SetActive(true);
+            if (!playedDeathNoise)
+            {
+                shootNoise.pitch = 1;
+                shootNoise.PlayOneShot(death, 0.4f);                
+                deathParticles.gameObject.SetActive(true);
+                playedDeathNoise = true;
+            }
         }
     }
     void PlantMine()

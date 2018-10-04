@@ -12,12 +12,14 @@ public class Enemy : MonoBehaviour
     public State Enemy_Level;
     [Range(0.1f, 5f)]
     public float shootTime;
+    public float turretTurnSpeed;
     public float timeToMine;
     private float mineTimer;
+    public AudioClip death;
     public GameObject Turret;
     public GameObject Rocket;
     public GameObject RocketSpawnPoint;
-    public float turretTurnSpeed;
+    
     private float shootTimer;
    
     public GameObject trailPrefab;
@@ -56,7 +58,7 @@ public class Enemy : MonoBehaviour
     }
     void UpdateTargetPosition()
     {
-        if (alive)
+        if (alive == true)
         {
             nav.destination = target.transform.position;
         }
@@ -94,6 +96,10 @@ public class Enemy : MonoBehaviour
                     }
                 }
             }
+            else
+            {
+             
+            }
             //Moving the tank [Upgrade this to ai]
             //transform.Translate(Vector3.forward * 0.5f * Time.deltaTime);
 
@@ -109,7 +115,7 @@ public class Enemy : MonoBehaviour
                     nav.speed = 1; nav.angularSpeed = 80;
                     break;
                 case State.Level_4: //MINER TANK
-                    nav.speed = 0.4f; nav.angularSpeed = 80;
+                    nav.speed = 1; nav.angularSpeed = 80;
                     mineTimer += 1 * Time.deltaTime;
                     if (mineTimer >= timeToMine)
                     {
@@ -124,8 +130,11 @@ public class Enemy : MonoBehaviour
         else
         {
             deathParticles.SetActive(true);
-            nav.speed = 0;
-            nav.angularSpeed = 0;
+           
+            GetComponent<Rigidbody>().velocity = Vector3.zero;
+            target = null;
+            nav.speed = 0; nav.angularSpeed = 0; nav.acceleration = 0;
+            nav.enabled = false;
         }
 
     }
