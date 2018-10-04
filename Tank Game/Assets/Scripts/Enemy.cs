@@ -27,22 +27,38 @@ public class Enemy : MonoBehaviour
     public ParticleSystem shootPuff;
     public AudioSource shoot;
     public GameObject target;
+    private NavMeshAgent nav;
+
+    private int turnDirection = 0;
+    private bool turningLeft = true;
     // Use this for initialization
+    private void Awake()
+    {
+        nav = GetComponent<NavMeshAgent>();
+        target = GameObject.FindWithTag("Player");
+    }
     void Start()
     {
-        InvokeRepeating("UpdateTargetPosition", 3, 3);
-        target = GameObject.FindWithTag("Player");
+        turnDirection = Random.Range(-1, 1);
+        if (turnDirection < 0)
+        {
+            turningLeft = true;
+        }
+        else { turningLeft = false; }
+        InvokeRepeating("UpdateTargetPosition", 1, 1);
+        //InvokeRepeating("Shoot", 3, 3);
        
         //Shoots every set time
         //InvokeRepeating("Shoot", shootTime, shootTime);
         //Spawns trail every set time
+        
         InvokeRepeating("TredTrail", 0.3f, 0.3f);
     }
     void UpdateTargetPosition()
     {
         if (alive)
         {
-            GetComponent<NavMeshAgent>().destination = target.transform.position;
+            nav.destination = target.transform.position;
         }
     }
     // Update is called once per frame
@@ -56,7 +72,7 @@ public class Enemy : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(Turret.transform.position, Turret.transform.TransformDirection(Vector3.forward * 50), out hit))
             {
-
+                
                 if (hit.collider.tag == "Player")
                 {
                     if (shootTimer >= shootTime)
@@ -68,26 +84,48 @@ public class Enemy : MonoBehaviour
                 }
                 else
                 {
-                    Turret.transform.Rotate(Vector3.up * -turretTurnSpeed * Time.deltaTime);
+                    if (turningLeft)
+                    {
+                        Turret.transform.Rotate(Vector3.up * -turretTurnSpeed * Time.deltaTime);
+                    }
+                    else
+                    {
+                        Turret.transform.Rotate(Vector3.up * turretTurnSpeed * Time.deltaTime);
+                    }
                 }
             }
             //Moving the tank [Upgrade this to ai]
             //transform.Translate(Vector3.forward * 0.5f * Time.deltaTime);
-           
 
-            if (Enemy_Level == State.Level_4)
+            switch (Enemy_Level)
             {
-                mineTimer += 1 * Time.deltaTime;
-                if (mineTimer >= timeToMine)
-                {
-                    PlantMine();
-                }
+                case State.Level_1: //Default Tank
+                    nav.speed = 0;nav.angularSpeed = 0;
+                    break;
+                case State.Level_2: //Moving Tank
+                    nav.speed = 0.5f; nav.angularSpeed = 80;
+                    break;
+                case State.Level_3: //Moving Smart Tank
+                    nav.speed = 1; nav.angularSpeed = 80;
+                    break;
+                case State.Level_4: //MINER TANK
+                    nav.speed = 0.4f; nav.angularSpeed = 80;
+                    mineTimer += 1 * Time.deltaTime;
+                    if (mineTimer >= timeToMine)
+                    {
+                        PlantMine();
+                    }
+                    break;
+                case State.Level_5: //Advanced Tank
+                    nav.speed = 1.5f; nav.angularSpeed = 80;
+                    break;
             }
         }
         else
         {
             deathParticles.SetActive(true);
-            GetComponent<NavMeshAgent>().enabled = false;
+            nav.speed = 0;
+            nav.angularSpeed = 0;
         }
 
     }
